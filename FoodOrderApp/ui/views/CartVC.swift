@@ -15,15 +15,21 @@ class CartVC: UIViewController {
     
     var cartFoods = [CartFood]()
     var viewModel = CartViewModel()
+    var totalPrice: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(cartFoodsChanged), name: NSNotification.Name("CartFoodsChanged"), object: nil)
         
         cartTableView.delegate = self
         cartTableView.dataSource = self
         
         _ = viewModel.cartFoodRXList.subscribe(onNext: { cartList in
             self.cartFoods = cartList
+            
+            NotificationCenter.default.post(name: NSNotification.Name("CartFoodsChanged"), object: nil)
+            
             DispatchQueue.main.async {
                 self.cartTableView.reloadData()
             }
@@ -33,7 +39,9 @@ class CartVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         viewModel.uploadCartFoods(user_name: "kurt_1996")
-        cartTableView.reloadData()
+        DispatchQueue.main.async {
+            self.cartTableView.reloadData()
+        }
     }
     
     @IBAction func confirmCartButton(_ sender: Any) {
@@ -44,7 +52,10 @@ extension CartVC: CartCellProtocol{
     func deleteFood(indexPath: IndexPath) {
         let food = cartFoods[indexPath.row]
         viewModel.deleteFromCart(food_id: Int(food.sepet_yemek_id!)!, user_name: "kurt_1996")
-        self.cartTableView.reloadData()
+        NotificationCenter.default.post(name: NSNotification.Name("CartFoodsChanged"), object: nil)
+        DispatchQueue.main.async {
+            self.cartTableView.reloadData()
+        }
     }
 }
 
@@ -75,6 +86,14 @@ extension CartVC: UITableViewDelegate, UITableViewDataSource {
         cell.cellBackgroundView.layer.cornerRadius = 10.0
         
         return cell
+    }
+    
+    @objc func cartFoodsChanged(){
+        totalPrice = 0
+        for food in cartFoods{
+            totalPrice += Int(food.yemek_fiyat!)! * Int(food.yemek_siparis_adet!)!
+        }
+        totalPriceLabel.text = "₺ \(totalPrice)"
     }
 }
 

@@ -135,14 +135,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHi-pl-FHj">
-                                <rect key="frame" x="159" y="69" width="75" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Oyh-r1-daE">
-                                <rect key="frame" x="0.0" y="90" width="393" height="679"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Is3-cC-vvG">
                                     <size key="itemSize" width="180" height="300"/>
@@ -221,22 +215,21 @@
                         <viewLayoutGuide key="safeArea" id="1gl-OR-UFF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="JHi-pl-FHj" firstAttribute="centerX" secondItem="tX1-IK-k8f" secondAttribute="centerX" id="Czx-5J-Ba4"/>
                             <constraint firstItem="1gl-OR-UFF" firstAttribute="trailing" secondItem="Oyh-r1-daE" secondAttribute="trailing" id="F1g-kb-KJw"/>
+                            <constraint firstItem="Oyh-r1-daE" firstAttribute="top" secondItem="1gl-OR-UFF" secondAttribute="top" id="ShJ-O3-jbL"/>
                             <constraint firstItem="1gl-OR-UFF" firstAttribute="bottom" secondItem="Oyh-r1-daE" secondAttribute="bottom" id="eqg-2N-ji2"/>
                             <constraint firstItem="Oyh-r1-daE" firstAttribute="leading" secondItem="1gl-OR-UFF" secondAttribute="leading" id="khY-Zp-ytP"/>
-                            <constraint firstItem="JHi-pl-FHj" firstAttribute="top" secondItem="1gl-OR-UFF" secondAttribute="top" constant="10" id="sLJ-nW-oJQ"/>
-                            <constraint firstItem="Oyh-r1-daE" firstAttribute="top" secondItem="JHi-pl-FHj" secondAttribute="bottom" id="sQS-4T-l8L"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favorites" image="heart" catalog="system" id="eGe-V2-fRK"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="9SA-OF-UR5"/>
                     <connections>
                         <outlet property="favoritesCollectionView" destination="Oyh-r1-daE" id="zh8-yY-mdK"/>
+                        <segue destination="QrY-2L-qo4" kind="show" identifier="favToFoodDetail" id="A4Z-qr-Fb7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3pO-4C-KfU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4646.5648854961828" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="5573.2824427480909" y="-27.464788732394368"/>
         </scene>
         <!--Cart-->
         <scene sceneID="zbK-aL-vaX">
@@ -354,8 +347,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₺ 150" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIn-SX-EhH">
-                                <rect key="frame" x="302.33333333333331" y="687.33333333333337" width="66.666666666666686" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₺ 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIn-SX-EhH">
+                                <rect key="frame" x="330.66666666666669" y="687.33333333333337" width="38.333333333333314" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -398,7 +391,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EQ2-Db-gLo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5577.8625954198469" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="6504.5801526717551" y="-27.464788732394368"/>
         </scene>
         <!--Food Detail-->
         <scene sceneID="u3y-HZ-T4J">
@@ -592,7 +585,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="N5d-we-zXm" kind="relationship" relationship="viewControllers" id="yo5-D0-jzf"/>
-                        <segue destination="vRD-99-Gp4" kind="relationship" relationship="viewControllers" id="Qt7-AT-CZU"/>
+                        <segue destination="HVa-e1-JBg" kind="relationship" relationship="viewControllers" id="Qt7-AT-CZU"/>
                         <segue destination="fbk-hT-Ivy" kind="relationship" relationship="viewControllers" id="94R-o0-r4s"/>
                     </connections>
                 </tabBarController>
@@ -619,7 +612,29 @@
             </objects>
             <point key="canvasLocation" x="2800.7633587786258" y="-27.464788732394368"/>
         </scene>
+        <!--Favorites-->
+        <scene sceneID="a7V-xz-7x2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HVa-e1-JBg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Favorites" image="heart" catalog="system" id="eGe-V2-fRK"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R1m-5M-kdR">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vRD-99-Gp4" kind="relationship" relationship="rootViewController" id="aXI-Kc-ic7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m0J-nW-2Nu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4646.5648854961828" y="-27.464788732394368"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="A4Z-qr-Fb7"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="cart" catalog="system" width="128" height="102"/>
         <image name="heart" catalog="system" width="128" height="107"/>

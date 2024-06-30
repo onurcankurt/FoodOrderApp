@@ -82,13 +82,20 @@ extension FavoritesVC: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 10
         
-//        if food.yemek_fav == true{
-//            cell.favButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-//        } else {
-//            cell.favButton.setImage(UIImage(systemName: "heart"), for: .normal)
-//        }
-        
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let food = favoritesList[indexPath.row]
+        performSegue(withIdentifier: "favToFoodDetail", sender: food)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "favToFoodDetail"{
+            if let senderFood = sender as? Food{
+                let destinationVC = segue.destination as! FoodDetailVC
+                destinationVC.detailsFood = senderFood
+            }
+        }
+    }
 }

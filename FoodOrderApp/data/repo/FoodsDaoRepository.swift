@@ -98,6 +98,50 @@ class FoodsDaoRepository {
         }
     }
     
+    func uploadSearchingFoods(searchText: String){
+        AF.request("http://kasimadalan.pe.hu/yemekler/tumYemekleriGetir.php", method: .get).response { response in
+            if let data = response.data {
+                do{
+                    let cevap = try JSONDecoder().decode(FoodsResponse.self , from: data)
+                    var searchList = [Food]()
+                    if let liste = cevap.yemekler {
+                        
+                        for food in liste {
+                            food.yemek_fav = false
+                        }
+                        
+                        self.collectionFavoriteFoods.addSnapshotListener { snapshot, error in
+
+                            if let documents = snapshot?.documents {
+                                for document in documents {
+                                    let data = document.data()
+                                    let id = document.documentID
+                                    let food_id = data["food_id"] as? String ?? ""
+                                    
+                                    for food in liste {
+                                        if food.yemek_id == food_id{
+                                            food.id = id
+                                            food.yemek_fav = true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                        for food in liste {
+                            if food.yemek_adi!.lowercased().contains(searchText.lowercased()){
+                                searchList.append(food)
+                            }
+                        }
+                        self.foodRXList.onNext(searchList)
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
     func addFoodToCart(food_name: String, food_image: String, food_price: Int, food_count: Int, user_name: String){
         let params: Parameters = ["yemek_adi": food_name,
                                   "yemek_resim_adi": food_image,
@@ -123,7 +167,7 @@ class FoodsDaoRepository {
             if let data = response.data{
                 do {
                     let jsonResponse = try JSONDecoder().decode(CartFoodsResponse.self, from: data)
-                    print("\(jsonResponse.success!)")
+                    print("uploadCartFoods success: \(jsonResponse.success!)")
                     if let list = jsonResponse.sepet_yemekler{
                         self.cartFoodRXList.onNext(list)
                     }
@@ -142,7 +186,7 @@ class FoodsDaoRepository {
                 do{
                     let jsonResponse = try JSONDecoder().decode(CartCRUDResponse.self, from: data)
                     self.uploadCartFoods(user_name: "kurt_1996")
-                    print("\(jsonResponse.message!)")
+                    print("delete cart food message: \(jsonResponse.message!)")
                 }catch {
                     print(error.localizedDescription)
                 }
