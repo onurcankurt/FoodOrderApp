@@ -20,6 +20,12 @@
 		779C21902C28365800031408 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779C218F2C28365800031408 /* FavoritesViewModel.swift */; };
 		779C21922C284C1200031408 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 779C21912C284C1200031408 /* GoogleService-Info.plist */; };
 		779C21952C284DD100031408 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 779C21942C284DD100031408 /* FirebaseFirestore */; };
+		77A0AF0D2C309ECB009C594C /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A0AF0C2C309ECB009C594C /* CartVC.swift */; };
+		77A0AF0F2C309F91009C594C /* CartTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A0AF0E2C309F91009C594C /* CartTableCell.swift */; };
+		77A0AF112C30AF97009C594C /* CartFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A0AF102C30AF97009C594C /* CartFood.swift */; };
+		77A0AF152C30B263009C594C /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A0AF142C30B263009C594C /* CartViewModel.swift */; };
+		77A0AF172C30B3A6009C594C /* CartCRUDResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A0AF162C30B3A6009C594C /* CartCRUDResponse.swift */; };
+		77A0AF192C30B70F009C594C /* CartFoodsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A0AF182C30B70F009C594C /* CartFoodsResponse.swift */; };
 		77A258EA2C240B1000113CBE /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A258E92C240B1000113CBE /* FavoritesVC.swift */; };
 		77C8E9742C2DDBBD006D4184 /* FoodDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C8E9732C2DDBBD006D4184 /* FoodDetailVC.swift */; };
 		77EC1AD52C1E05F90003E532 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EC1AD42C1E05F90003E532 /* AppDelegate.swift */; };
@@ -40,6 +46,12 @@
 		779C218D2C28363000031408 /* FavoritesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionCell.swift; sourceTree = "<group>"; };
 		779C218F2C28365800031408 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		779C21912C284C1200031408 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		77A0AF0C2C309ECB009C594C /* CartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
+		77A0AF0E2C309F91009C594C /* CartTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableCell.swift; sourceTree = "<group>"; };
+		77A0AF102C30AF97009C594C /* CartFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartFood.swift; sourceTree = "<group>"; };
+		77A0AF142C30B263009C594C /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
+		77A0AF162C30B3A6009C594C /* CartCRUDResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCRUDResponse.swift; sourceTree = "<group>"; };
+		77A0AF182C30B70F009C594C /* CartFoodsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartFoodsResponse.swift; sourceTree = "<group>"; };
 		77A258E92C240B1000113CBE /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 		77C8E9732C2DDBBD006D4184 /* FoodDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailVC.swift; sourceTree = "<group>"; };
 		77EC1AD12C1E05F90003E532 /* FoodOrderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodOrderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +105,7 @@
 				77EC1AD82C1E05F90003E532 /* HomePageVC.swift */,
 				77A258E92C240B1000113CBE /* FavoritesVC.swift */,
 				77C8E9732C2DDBBD006D4184 /* FoodDetailVC.swift */,
+				77A0AF0C2C309ECB009C594C /* CartVC.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -100,6 +113,7 @@
 		77A258E42C240A9F00113CBE /* tablecells */ = {
 			isa = PBXGroup;
 			children = (
+				77A0AF0E2C309F91009C594C /* CartTableCell.swift */,
 			);
 			path = tablecells;
 			sourceTree = "<group>";
@@ -119,6 +133,7 @@
 				777064AC2C21BCAA004DAA55 /* HomePageViewModel.swift */,
 				779C218F2C28365800031408 /* FavoritesViewModel.swift */,
 				771B7EE62C304B4900D6FCF8 /* FoodDetailViewModel.swift */,
+				77A0AF142C30B263009C594C /* CartViewModel.swift */,
 			);
 			path = viewmodels;
 			sourceTree = "<group>";
@@ -128,6 +143,9 @@
 			children = (
 				777064A82C21B7D5004DAA55 /* Food.swift */,
 				777064B62C21BF19004DAA55 /* FoodsResponse.swift */,
+				77A0AF102C30AF97009C594C /* CartFood.swift */,
+				77A0AF182C30B70F009C594C /* CartFoodsResponse.swift */,
+				77A0AF162C30B3A6009C594C /* CartCRUDResponse.swift */,
 			);
 			path = entity;
 			sourceTree = "<group>";
@@ -258,15 +276,21 @@
 			files = (
 				777064B72C21BF19004DAA55 /* FoodsResponse.swift in Sources */,
 				77C8E9742C2DDBBD006D4184 /* FoodDetailVC.swift in Sources */,
+				77A0AF0F2C309F91009C594C /* CartTableCell.swift in Sources */,
+				77A0AF0D2C309ECB009C594C /* CartVC.swift in Sources */,
 				779C21902C28365800031408 /* FavoritesViewModel.swift in Sources */,
 				777064AF2C21BCB7004DAA55 /* FoodsDaoRepository.swift in Sources */,
+				77A0AF152C30B263009C594C /* CartViewModel.swift in Sources */,
 				77EC1AD92C1E05F90003E532 /* HomePageVC.swift in Sources */,
+				77A0AF172C30B3A6009C594C /* CartCRUDResponse.swift in Sources */,
 				779C218E2C28363000031408 /* FavoritesCollectionCell.swift in Sources */,
 				777064AB2C21BA49004DAA55 /* FoodCollectionCell.swift in Sources */,
 				777064AD2C21BCAA004DAA55 /* HomePageViewModel.swift in Sources */,
 				77A258EA2C240B1000113CBE /* FavoritesVC.swift in Sources */,
+				77A0AF112C30AF97009C594C /* CartFood.swift in Sources */,
 				771B7EE72C304B4900D6FCF8 /* FoodDetailViewModel.swift in Sources */,
 				777064A92C21B7D5004DAA55 /* Food.swift in Sources */,
+				77A0AF192C30B70F009C594C /* CartFoodsResponse.swift in Sources */,
 				77EC1AD52C1E05F90003E532 /* AppDelegate.swift in Sources */,
 				77EC1AD72C1E05F90003E532 /* SceneDelegate.swift in Sources */,
 			);

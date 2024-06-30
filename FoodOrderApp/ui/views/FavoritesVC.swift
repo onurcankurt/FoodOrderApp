@@ -43,8 +43,11 @@ class FavoritesVC: UIViewController {
 }
 
 extension FavoritesVC: FoodCellProtocol{
+    
     func addToCart(indexPath: IndexPath) {
-        print("addtocart")
+        let food = favoritesList[indexPath.row]
+        
+        viewModel.addFoodToCart(food_name: food.yemek_adi!, food_image: food.yemek_resim_adi!, food_price: Int(food.yemek_fiyat!)!, food_count: 1, user_name: "kurt_1996")
     }
     
     func toggleFavorite(indexPath: IndexPath) {

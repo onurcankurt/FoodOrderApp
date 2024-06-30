@@ -14,6 +14,8 @@ class FoodsDaoRepository {
     var foodRXList = BehaviorSubject(value: [Food]())
     var favoriteFoodsRXList = BehaviorSubject(value: [Food]())
     
+    var cartFoodRXList = BehaviorSubject(value: [CartFood]())
+    
     var collectionFavoriteFoods = Firestore.firestore().collection("FavoriteFoods")
     
     func addToFavorites(food_id: String, food_name: String){
@@ -90,6 +92,58 @@ class FoodsDaoRepository {
                         self.foodRXList.onNext(liste)
                     }
                 } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func addFoodToCart(food_name: String, food_image: String, food_price: Int, food_count: Int, user_name: String){
+        let params: Parameters = ["yemek_adi": food_name,
+                                  "yemek_resim_adi": food_image,
+                                  "yemek_fiyat": food_price,
+                                  "yemek_siparis_adet": food_count,
+                                  "kullanici_adi": user_name
+        ]
+        AF.request("http://kasimadalan.pe.hu/yemekler/sepeteYemekEkle.php", method: .post, parameters: params).response { response in
+            if let data = response.data {
+                do {
+                    let jsonResponse = try JSONDecoder().decode(CartCRUDResponse.self, from: data)
+                    print(jsonResponse.message!)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func uploadCartFoods(user_name: String){
+        let params: Parameters = ["kullanici_adi": user_name]
+        AF.request("http://kasimadalan.pe.hu/yemekler/sepettekiYemekleriGetir.php", method: .post, parameters: params).response { response in
+            if let data = response.data{
+                do {
+                    let jsonResponse = try JSONDecoder().decode(CartFoodsResponse.self, from: data)
+                    print("\(jsonResponse.success!)")
+                    if let list = jsonResponse.sepet_yemekler{
+                        self.cartFoodRXList.onNext(list)
+                    }
+                } catch {
+                    self.cartFoodRXList.onNext([CartFood]()) //son elemanı silerken hata verdiği için
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func deleteFromCart(food_id: Int, user_name: String){
+        let params : Parameters = ["sepet_yemek_id": food_id, "kullanici_adi": user_name]
+        AF.request("http://kasimadalan.pe.hu/yemekler/sepettenYemekSil.php", method: .post, parameters: params).response { response in
+            if let data = response.data {
+                do{
+                    let jsonResponse = try JSONDecoder().decode(CartCRUDResponse.self, from: data)
+                    self.uploadCartFoods(user_name: "kurt_1996")
+                    print("\(jsonResponse.message!)")
+                }catch {
                     print(error.localizedDescription)
                 }
             }
