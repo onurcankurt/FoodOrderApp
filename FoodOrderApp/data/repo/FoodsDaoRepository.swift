@@ -45,6 +45,7 @@ class FoodsDaoRepository {
                                     for food in liste {
                                         if food.yemek_id == food_id{
                                             food.id = id
+                                            food.yemek_fav = true
                                             foodList.append(food)
                                         }
                                     }
@@ -142,7 +143,7 @@ class FoodsDaoRepository {
         }
     }
     
-    func addFoodToCart(food_name: String, food_image: String, food_price: Int, food_count: Int, user_name: String){
+    func addFoodToCart(food_name: String, food_image: String, food_price: Int, food_count: Int, user_name: String, viewcontroller: UIViewController){
         let params: Parameters = ["yemek_adi": food_name,
                                   "yemek_resim_adi": food_image,
                                   "yemek_fiyat": food_price,
@@ -153,6 +154,10 @@ class FoodsDaoRepository {
             if let data = response.data {
                 do {
                     let jsonResponse = try JSONDecoder().decode(CartCRUDResponse.self, from: data)
+                    let alert = UIAlertController(title: "Added to cart", message: "The food has been added to the cart.", preferredStyle: .actionSheet)
+                    let okButton = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(okButton)
+                    viewcontroller.present(alert, animated: true)
                     print(jsonResponse.message!)
                 } catch {
                     print(error.localizedDescription)

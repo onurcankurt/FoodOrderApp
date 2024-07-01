@@ -90,7 +90,7 @@ class FoodDetailVC: UIViewController {
     
     @IBAction func addToCartButton(_ sender: Any) {
         if let food = detailsFood{
-            viewModel.addFoodToCart(food_name: food.yemek_adi!, food_image: food.yemek_resim_adi!, food_price: Int(food.yemek_fiyat!)!, food_count: self.foodCount, user_name: "kurt_1996")
+            viewModel.addFoodToCart(food_name: food.yemek_adi!, food_image: food.yemek_resim_adi!, food_price: Int(food.yemek_fiyat!)!, food_count: self.foodCount, user_name: "kurt_1996", viewcontroller: self)
         }
         
     }
